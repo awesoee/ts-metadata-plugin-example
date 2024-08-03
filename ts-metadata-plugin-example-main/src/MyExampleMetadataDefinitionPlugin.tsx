@@ -36,7 +36,7 @@ export default class MyMetadataDefinitionPlugin extends BaseMetadataDefinitionPl
    * Force this component to re-render when parent window sends new props
    */
   onPropsUpdated(props) {
-    ReactDOM.render(<MyMetadataDefinitionPlugin {...props} />, document.querySelector('.MyMetadataDefinitionPluginPluginWrapper'));
+    ReactDOM.render(<MyMetadataDefinitionPlugin {...props} />, document.querySelector('.MyMetadataDefinitionPluginWrapper'));
   }
 
   /**
@@ -47,7 +47,7 @@ export default class MyMetadataDefinitionPlugin extends BaseMetadataDefinitionPl
     // Return metadata definitions
     FrayToolsPluginCore.sendMetadataDefinitions([
       {
-        metadataOwnerTypes: ['IMAGE_LAYER_METADATA', 'IMAGE_KEYFRAME_METADATA', 'IMAGE_SYMBOL_METADATA'],
+        metadataOwnerTypes: ['IMAGE_LAYER_METADATA', 'IMAGE_KEYFRAME_METADATA', 'IMAGE_SYMBOL_METADATA', 'SPRITE_ENTITY_ASSET_METADATA'],
         fields: [{
           name: 'myCustomDropdown',
           label: 'My Custom Dropdown',
@@ -134,6 +134,9 @@ export default class MyMetadataDefinitionPlugin extends BaseMetadataDefinitionPl
     }
 
     // Note: MetadataDefinitionPlugins that aren't in config mode run in the background and thus do not display a view while active
-    return <div/>;
+      return  <div className="MyMetadataAssetComponent" style={{ color: '#ffffff', background: '#000000' }}>
+          <p>Hello world! This is an example configuration view for a Metadata Definition plugin.</p>
+          <p>Here you would provide a UI for assigning custom settings to persist between sessions using 'pluginConfigSyncRequest' postMessage() commands sent to the parent window. This data will then be stored within the current FrayTools project settings file.</p>
+      </div>
   }
 }
